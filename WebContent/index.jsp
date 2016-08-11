@@ -3,13 +3,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>图片验证码</title>
 </head>
 <script type="text/javascript" src="js/jQuery1.9.1.js"></script>
 <script type="text/javascript">
 	 function reload(){
-		var time = new Date().getTime();
-		document.getElementById("image").src="<%=request.getContextPath() %>/imageServlet?date="+time;
+		document.getElementById("image").src="<%=request.getContextPath() %>/imageServlet?date="+new Date().getTime();
 		$("#checkcode").val("");   // 将验证码清空
 	} 
 	 
@@ -21,7 +20,7 @@
 				 $("#span").text("验证成功!").css("color","green");
 			 }else{
 				 $("#span").text("验证失败!").css("color","red");
-				 reload();  //验证失败后更换验证码
+				 reload();  //验证失败后需要更换验证码
 			 }
 		 });
 		 $("#checkcode").val(""); // 将验证码清空

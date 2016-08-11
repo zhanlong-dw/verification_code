@@ -5,12 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,17 +22,17 @@ public class ImageServlet extends HttpServlet {
 		BufferedImage bfi = new BufferedImage(80,25,BufferedImage.TYPE_INT_RGB);
 		Graphics g = bfi.getGraphics();
 		g.fillRect(0, 0, 80, 25);
-		
-	    //验证码字符范围
+
+		//验证码字符范围
 		char[] ch = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".toCharArray();
 		Random r = new Random(); 
-		int len=ch.length,index;  //注意这不是逗号表达式....
+		int index;  
 		StringBuffer sb = new StringBuffer(); //保存字符串
 		for(int i=0; i<4; i++){
-			index = r.nextInt(len);
+			index = r.nextInt(ch.length);
 			g.setColor(new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
-			Font ValueFont = new Font("宋体", 30, 20);
-			g.setFont(ValueFont);
+			Font font = new Font("宋体", 30, 20);
+			g.setFont(font);
 			g.drawString(ch[index]+"", (i*20)+2, 23);
 			sb.append(ch[index]);
 		}
